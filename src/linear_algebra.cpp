@@ -51,3 +51,41 @@ float Vec3::dot(const Vec3& other) const {
     return data[0] * other.data[0] + data[1] * other.data[1] + data[2] * other.data[2];
 }
 float Vec3::angle_with(const Vec3& other) const { return acos(dot(other) / (norm() * other.norm())); }
+
+Mat3 linear_algebra::operator+(const Mat3& lhs, const Mat3& rhs) {
+    std::array<std::array<float, 3>, 3> data;
+    for (uint8_t i = 0; i < 3; i++) {
+        for (uint8_t j = 0; j < 3; j++) {
+            data.at(i).at(j) = lhs[i][j] + rhs[i][j];
+        }
+    }
+    return Mat3(data);
+}
+Mat3 linear_algebra::operator-(const Mat3& lhs, const Mat3& rhs) {
+    std::array<std::array<float, 3>, 3> data;
+    for (uint8_t i = 0; i < 3; i++) {
+        for (uint8_t j = 0; j < 3; j++) {
+            data.at(i).at(j) = lhs[i][j] - rhs[i][j];
+        }
+    }
+    return Mat3(data);
+}
+Mat3 linear_algebra::operator*(const Mat3& lhs, const Mat3& rhs) {
+    std::array<std::array<float, 3>, 3> data;
+    for (uint8_t i = 0; i < 3; i++) {
+        for (uint8_t j = 0; j < 3; j++) {
+            data.at(i).at(j) = lhs[i][0] * rhs[0][j] + lhs[i][1] * rhs[1][j] + lhs[i][2] * rhs[2][j];
+        }
+    }
+    return Mat3(data);
+}
+Mat3 linear_algebra::operator*(const Mat3& lhs, float rhs) {
+    std::array<std::array<float, 3>, 3> data;
+    for (uint8_t i = 0; i < 3; i++) {
+        for (uint8_t j = 0; j < 3; j++) {
+            data.at(i).at(j) = lhs[i][j] * rhs;
+        }
+    }
+    return Mat3(data);
+}
+Mat3 linear_algebra::operator*(float lhs, const Mat3& rhs) { return linear_algebra::operator*(rhs, lhs); }

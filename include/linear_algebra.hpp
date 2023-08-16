@@ -35,4 +35,10 @@ public:
     float norm() const;
 };
 
+Matrix3x3 operator+(const Matrix3x3& lhs, const Matrix3x3& rhs);
+Matrix3x3 operator-(const Matrix3x3& lhs, const Matrix3x3& rhs);
+Matrix3x3 operator*(const Matrix3x3& lhs, const Matrix3x3& rhs);
+Matrix3x3 operator*(const Matrix3x3& lhs, float rhs);
+Matrix3x3 operator*(float lhs, const Matrix3x3& rhs);
+
 } // namespace linear_agebra
